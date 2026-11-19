@@ -2,15 +2,15 @@
 // asks for. Deep links: ?view=checklist|roadmap|missables, ?open=<trophy id>,
 // and ?seed=<n> marks the first n trophies earned for a demo or a screenshot.
 import { loadAtlas } from './data.js';
-import { exportEarned, importEarned, loadEarned, saveEarned } from './store.js';
-import { renderChecklist, renderDetail, renderMissables, renderProgress, renderRoadmap } from './views.js';
+import { downloadProgress, loadProgress, readProgressFile, saveProgress } from './store.js';
+import { showChecklist, showGuide, showMissables, showProgress, showRoadmap } from './views.js';
 
-const viewEl = document.getElementById('view');
-const detailEl = document.getElementById('detail');
+const paneEl = document.getElementById('pane');
+const guideEl = document.getElementById('guide');
 
-const state = {
+const app = {
   doc: null,
-  earned: loadEarned(),
+  earned: loadProgress(),
   filters: {
     search: '',
     grade: 'all',
@@ -25,100 +25,100 @@ const state = {
   onToggle: null,
   onSelect: null,
 };
-state.filters.earned = state.earned;
+app.filters.earned = app.earned;
 
-function renderAll() {
-  if (state.view === 'roadmap') renderRoadmap(viewEl, state);
-  else if (state.view === 'missables') renderMissables(viewEl, state);
-  else renderChecklist(viewEl, state);
-  renderDetail(detailEl, state);
-  renderProgress(state);
+function paint() {
+  if (app.view === 'roadmap') showRoadmap(paneEl, app);
+  else if (app.view === 'missables') showMissables(paneEl, app);
+  else showChecklist(paneEl, app);
+  showGuide(guideEl, app);
+  showProgress(app);
 }
 
-state.onToggle = (id, checked) => {
-  if (checked) state.earned.add(id);
-  else state.earned.delete(id);
-  saveEarned(state.earned);
-  renderAll();
+app.onToggle = (id, checked) => {
+  if (checked) app.earned.add(id);
+  else app.earned.delete(id);
+  saveProgress(app.earned);
+  paint();
 };
 
-state.onSelect = (id) => {
-  state.selectedId = id;
-  renderAll();
+app.onSelect = (id) => {
+  app.selectedId = id;
+  paint();
   // On narrow screens the guide sits below the list, so bring it into view.
   // On desktop it is already beside the list and must not move the page.
-  if (window.innerWidth < 900) detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (window.innerWidth < 900) guideEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 };
 
-function setView(view) {
-  state.view = view;
-  for (const tab of document.querySelectorAll('.tab')) {
-    tab.classList.toggle('active', tab.dataset.view === view);
+function switchView(view) {
+  app.view = view;
+  for (const tab of document.querySelectorAll('.view-btn')) {
+    tab.classList.toggle('on', tab.dataset.view === view);
   }
-  renderAll();
+  paint();
 }
 
-for (const tab of document.querySelectorAll('.tab')) {
-  tab.addEventListener('click', () => setView(tab.dataset.view));
+for (const tab of document.querySelectorAll('.view-btn')) {
+  tab.addEventListener('click', () => switchView(tab.dataset.view));
 }
 
-document.getElementById('search').addEventListener('input', (event) => {
-  state.filters.search = event.target.value;
-  renderAll();
+document.getElementById('q').addEventListener('input', (event) => {
+  app.filters.search = event.target.value;
+  paint();
 });
-document.getElementById('grade').addEventListener('change', (event) => {
-  state.filters.grade = event.target.value;
-  renderAll();
+document.getElementById('grade-sel').addEventListener('change', (event) => {
+  app.filters.grade = event.target.value;
+  paint();
 });
-document.getElementById('kind').addEventListener('change', (event) => {
-  state.filters.kind = event.target.value;
-  renderAll();
+document.getElementById('kind-sel').addEventListener('change', (event) => {
+  app.filters.kind = event.target.value;
+  paint();
 });
-document.getElementById('status').addEventListener('change', (event) => {
-  state.filters.status = event.target.value;
-  renderAll();
+document.getElementById('status-sel').addEventListener('change', (event) => {
+  app.filters.status = event.target.value;
+  paint();
 });
 document.getElementById('missable-only').addEventListener('change', (event) => {
-  state.filters.missableOnly = event.target.checked;
-  renderAll();
+  app.filters.missableOnly = event.target.checked;
+  paint();
 });
-document.getElementById('spoilers').addEventListener('change', (event) => {
-  state.filters.hideSpoilers = event.target.checked;
-  renderAll();
+document.getElementById('hide-spoilers').addEventListener('change', (event) => {
+  app.filters.hideSpoilers = event.target.checked;
+  paint();
 });
-document.getElementById('export').addEventListener('click', () => exportEarned(state.earned));
-document.getElementById('import').addEventListener('change', async (event) => {
+document.getElementById('export-btn').addEventListener('click', () => downloadProgress(app.earned));
+document.getElementById('import-file').addEventListener('change', async (event) => {
   const file = event.target.files[0];
   if (!file) return;
   try {
-    state.earned = await importEarned(file);
-    state.filters.earned = state.earned;
-    saveEarned(state.earned);
+    app.earned = await readProgressFile(file);
+    app.filters.earned = app.earned;
+    saveProgress(app.earned);
   } catch {
     // A file that is not progress is ignored; the current ticks stay.
   }
   event.target.value = '';
-  renderAll();
+  paint();
 });
 
-state.doc = await loadAtlas();
+app.doc = await loadAtlas();
 
 // A demo seed (?seed=13) marks the first n trophies earned in memory, for a
 // screenshot or a first look. It is not saved until the reader ticks something.
 const params = new URLSearchParams(location.search);
 const seed = Number(params.get('seed'));
 if (Number.isInteger(seed) && seed > 0) {
-  for (const trophy of state.doc.trophies.slice(0, Math.min(seed, state.doc.trophies.length))) {
-    state.earned.add(trophy.id);
+  for (const trophy of app.doc.trophies.slice(0, Math.min(seed, app.doc.trophies.length))) {
+    app.earned.add(trophy.id);
   }
 }
 const openId = Number(params.get('open'));
-if (Number.isInteger(openId) && state.doc.trophies.some((trophy) => trophy.id === openId)) {
-  state.selectedId = openId;
+if (Number.isInteger(openId) && app.doc.trophies.some((trophy) => trophy.id === openId)) {
+  app.selectedId = openId;
 }
 const viewParam = params.get('view');
 if (viewParam === 'roadmap' || viewParam === 'missables') {
-  setView(viewParam);
+  switchView(viewParam);
 } else {
-  renderAll();
+  paint();
 }

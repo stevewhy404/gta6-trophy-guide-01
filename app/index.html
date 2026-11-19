@@ -7,29 +7,32 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="masthead">
-  <div class="masthead-title">
+<header class="top">
+  <div>
+    <p class="eyebrow">Grand Theft Auto VI · PlayStation 5 · 55 trophies</p>
     <h1>Leonida Trophy Atlas</h1>
-    <p class="subtitle">Every PlayStation 5 trophy in Grand Theft Auto VI — what each one asks, how to earn it, and where it can be missed. Fully offline; your ticks never leave this browser.</p>
+    <p class="lede">Every trophy in GTA VI: what it asks, how to earn it, and which ones can be missed. Works fully offline — your ticks stay in this browser.</p>
   </div>
-  <div class="progress-card" id="progress-card">
-    <div class="big-count"><span id="earned-count">0</span><span class="of"> / 55 earned</span></div>
-    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-    <p class="grade-counts" id="grade-counts"></p>
-    <p class="platinum-note" id="platinum-note"></p>
+  <div class="meter" id="meter">
+    <div class="meter-count"><span id="earned-num">0</span><span class="meter-total"> / 55 earned</span></div>
+    <div class="meter-track"><div class="meter-fill" id="meter-fill"></div></div>
+    <p class="meter-grades" id="meter-grades"></p>
+    <p class="meter-next" id="meter-next"></p>
   </div>
 </header>
 
-<nav class="tabs" aria-label="Views">
-  <button type="button" class="tab active" data-view="checklist">Checklist</button>
-  <button type="button" class="tab" data-view="roadmap">Roadmap to Platinum</button>
-  <button type="button" class="tab" data-view="missables">Missables</button>
+<nav class="views" aria-label="Views">
+  <button type="button" class="view-btn on" data-view="checklist">Checklist</button>
+  <button type="button" class="view-btn" data-view="roadmap">Roadmap to Platinum</button>
+  <button type="button" class="view-btn" data-view="missables">Missables</button>
 </nav>
 
-<section class="toolbar" aria-label="Filters">
-  <label class="field search-field">Search <input id="search" type="search" placeholder="Trophy name or words…" autocomplete="off"></label>
-  <label class="field">Grade
-    <select id="grade">
+<div class="filters" aria-label="Filters">
+  <label class="ctl wide">Search
+    <input id="q" type="search" placeholder="Trophy name or words…" autocomplete="off">
+  </label>
+  <label class="ctl">Grade
+    <select id="grade-sel">
       <option value="all">All grades</option>
       <option value="platinum">Platinum</option>
       <option value="gold">Gold</option>
@@ -37,8 +40,8 @@
       <option value="bronze">Bronze</option>
     </select>
   </label>
-  <label class="field">Kind
-    <select id="kind">
+  <label class="ctl">Kind
+    <select id="kind-sel">
       <option value="all">All kinds</option>
       <option value="story">Story</option>
       <option value="mission">Missions</option>
@@ -51,28 +54,28 @@
       <option value="completion">100% completion</option>
     </select>
   </label>
-  <label class="field">Status
-    <select id="status">
+  <label class="ctl">Status
+    <select id="status-sel">
       <option value="all">Earned &amp; not earned</option>
       <option value="earned">Earned only</option>
       <option value="missing">Not earned only</option>
     </select>
   </label>
-  <label class="check"><input id="missable-only" type="checkbox"> Missable only</label>
-  <label class="check"><input id="spoilers" type="checkbox" checked> Hide spoilers</label>
-  <span class="spacer"></span>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</section>
+  <label class="flag"><input id="missable-only" type="checkbox"> Missable only</label>
+  <label class="flag"><input id="hide-spoilers" type="checkbox" checked> Hide spoilers</label>
+  <span class="fill"></span>
+  <button id="export-btn" type="button">Export progress</button>
+  <label class="import-btn">Import progress <input id="import-file" type="file" accept="application/json"></label>
+</div>
 
-<main class="layout">
-  <section class="list-pane" id="view" aria-live="polite"></section>
-  <aside class="detail-pane" id="detail" aria-label="Trophy guide"></aside>
+<main class="split">
+  <section class="pane" id="pane" aria-live="polite"></section>
+  <aside class="guide" id="guide" aria-label="Trophy guide"></aside>
 </main>
 
-<footer class="colophon">
-  <p><strong>Sources.</strong> Trophy names, descriptions and grades are the official list as PlayStation publishes them (via Exophase); progress targets and counts come from PSNProfiles. Every guide is written for this atlas, in our own words, from the official descriptions — and where a description doesn't pin a place down, the guide says so instead of inventing one. Nothing here is copied from another guide.</p>
-  <p><strong>Missable rule.</strong> A trophy is flagged missable when it is tied to a single named story mission or a one-off story beat. Story missions can usually be replayed, so treat a flag as “do it when it comes”, not “gone forever”.</p>
+<footer class="notes">
+  <p><strong>Sources.</strong> Trophy names, descriptions and grades are the official list as PlayStation publishes them (via Exophase); progress targets and counts come from PSNProfiles. Every guide is written for this atlas, in its own words, from the official descriptions — and where a description does not pin a place down, the guide says so instead of inventing one. Nothing here is copied from another guide.</p>
+  <p><strong>Missable rule.</strong> A trophy is flagged missable when it is tied to one named story mission or a single one-off story beat. Story missions can usually be replayed, so treat a flag as “do it when it comes up”, not “gone for good”.</p>
   <p><strong>Offline.</strong> This atlas is static files only: it loads nothing from the network, keeps your ticks in this browser's local storage, and never asks for an account. No Rockstar artwork — the medals are drawn with CSS.</p>
 </footer>
 

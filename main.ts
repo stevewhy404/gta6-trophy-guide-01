@@ -1,13 +1,14 @@
-// Leonida Trophy Atlas — entrypoint for gta6-trophy-guide-01 (Node 22, stdlib only).
+// Leonida Trophy Atlas — dossier entrypoint for gta6-trophy-guide-01.
+// Node 22, stdlib only.
 //
-// What this program hands in: the offline guide in app/ (a static site: index.html,
-// its modules, styles and data, including app/data/trophies.json) plus the 3-4
-// screenshots/ renders of it, and /output/dossier.json — the summary the judge
-// reads — built with the vendored make.fun library. The library file
+// This builds what gets handed in: the offline guide in app/ (index.html,
+// modules, styles and data, including app/data/trophies.json), the
+// screenshots of it, and dossier.json under /output — the summary the judge
+// reads — produced by the vendored make.fun library. The library file
 // vendor/makefun-frontend.ts is the kit's own copy, kept byte for byte: the
 // scorer rebuilds the dossier with its identical copy and compares the two.
 //
-// Run it outside the grader with MAKEFUN_OUTPUT_DIR standing in for /output:
+// Outside the grader, point MAKEFUN_OUTPUT_DIR at a local folder:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
@@ -15,38 +16,38 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
 
-// The scorer's own caps for this competition (reference/gate.json): the text cap
-// shapes the dossier's bytes; the rest refuse an entry the scorer would refuse
-// (more than 4 screenshots, one over 256 KiB, or app/ past 993 files / 48 MiB).
-const DOSSIER_TEXT_MAX_BYTES = 163840;
-const SCREENSHOT_LIMIT = 4;
-const SCREENSHOT_MAX_BYTES = 262144;
-const APP_FILE_LIMIT = 993;
-const APP_BYTE_LIMIT = 50331648;
+// Caps from the scorer for this competition (reference/gate.json). The text
+// cap shapes how big the dossier gets; the rest reject an entry the scorer
+// would refuse anyway: over 4 screenshots, any screenshot over 256 KiB, or
+// app/ past 993 files / 48 MiB.
+const TEXT_CAP_BYTES = 163840;
+const MAX_SHOTS = 4;
+const MAX_SHOT_BYTES = 262144;
+const MAX_APP_FILES = 993;
+const MAX_APP_BYTES = 50331648;
 
-const repoRoot = fileURLToPath(new URL('.', import.meta.url));
-const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+const rootDir = fileURLToPath(new URL('.', import.meta.url));
+const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-mkdirSync(outputDir, { recursive: true });
+mkdirSync(outDir, { recursive: true });
 
-// The guide itself: every static file under app/.
-cpSync(join(repoRoot, 'app'), join(outputDir, 'app'), { recursive: true });
+// Copy the guide itself: every static file under app/.
+cpSync(join(rootDir, 'app'), join(outDir, 'app'), { recursive: true });
 
-// The renders of the guide, if they are there yet.
-const shotsDir = join(repoRoot, 'screenshots');
-mkdirSync(join(outputDir, 'screenshots'), { recursive: true });
-if (existsSync(shotsDir)) {
-  cpSync(shotsDir, join(outputDir, 'screenshots'), { recursive: true });
-}
+// Copy the renders of the guide, when they exist.
+mkdirSync(join(outDir, 'screenshots'), { recursive: true });
+const shots = join(rootDir, 'screenshots');
+if (existsSync(shots)) cpSync(shots, join(outDir, 'screenshots'), { recursive: true });
 
-const dossierPath = join(outputDir, 'dossier.json');
+// Build the dossier the judge reads.
+const dossierFile = join(outDir, 'dossier.json');
 writeFileSync(
-  dossierPath,
-  buildDossier(outputDir, {
-    text_max_bytes: DOSSIER_TEXT_MAX_BYTES,
-    screenshots: { max: SCREENSHOT_LIMIT, max_bytes: SCREENSHOT_MAX_BYTES },
-    app_max_files: APP_FILE_LIMIT,
-    app_max_bytes: APP_BYTE_LIMIT,
+  dossierFile,
+  buildDossier(outDir, {
+    text_max_bytes: TEXT_CAP_BYTES,
+    screenshots: { max: MAX_SHOTS, max_bytes: MAX_SHOT_BYTES },
+    app_max_files: MAX_APP_FILES,
+    app_max_bytes: MAX_APP_BYTES,
   }),
 );
-console.log(`dossier written: ${dossierPath}`);
+console.log(`dossier written: ${dossierFile}`);

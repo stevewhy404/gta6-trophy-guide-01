@@ -4,7 +4,7 @@
 // trophy are this atlas's own work.
 export const GRADE_ORDER = ['platinum', 'gold', 'silver', 'bronze'];
 
-export const KIND_LABELS = {
+export const KIND_NAMES = {
   story: 'Story',
   mission: 'Missions',
   activity: 'Activities',
@@ -18,59 +18,58 @@ export const KIND_LABELS = {
 
 export async function loadAtlas() {
   const response = await fetch('data/trophies.json');
-  const doc = await response.json();
-  return doc;
+  return response.json();
 }
 
-export function gradeCounts(trophies) {
-  const counts = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
-  for (const trophy of trophies) counts[trophy.grade] += 1;
-  return counts;
+export function gradeTotals(trophies) {
+  const totals = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
+  for (const trophy of trophies) totals[trophy.grade] += 1;
+  return totals;
 }
 
-export function earnedByGrade(trophies, earned) {
-  const counts = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
+export function earnedTotals(trophies, earned) {
+  const totals = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
   for (const trophy of trophies) {
-    if (earned.has(trophy.id)) counts[trophy.grade] += 1;
+    if (earned.has(trophy.id)) totals[trophy.grade] += 1;
   }
-  return counts;
+  return totals;
 }
 
-export function missableTrophies(trophies) {
+export function missableList(trophies) {
   return trophies.filter((trophy) => trophy.missable);
 }
 
 // The roadmap, built from the official descriptions: story first, then the
 // stranger strands, then activities and collectibles, then the cleanup that
 // finishes 100% completion. Each phase names the trophies it covers.
-export function roadmapPhases(trophies) {
+export function phases(trophies) {
   const byId = new Map(trophies.map((trophy) => [trophy.id, trophy]));
-  const pick = (...ids) => ids.map((id) => byId.get(id)).filter(Boolean);
+  const take = (...ids) => ids.map((id) => byId.get(id)).filter(Boolean);
   return [
     {
       title: 'Phase 1 — Play the story',
-      text: 'Follow the story from the opening mission through the final mission. Chapters and named missions pop as you go; the missable flags in this phase are single missions, so play each when it appears.',
-      trophies: pick(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 44, 45, 46, 47, 48, 49, 50),
+      text: 'Start with the story and nothing else: opening mission to finale, chapters in order. The chapter pops come on their own, and the missable ones here are single named missions — do each when it shows up.',
+      trophies: take(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 44, 45, 46, 47, 48, 49, 50),
     },
     {
       title: 'Phase 2 — Strangers across Leonida',
-      text: 'Meet the strangers marked around the state and follow each strand to its end. Eight finished strands earn Strangers & Freaks; the five character finales are single missions, so finish each strand when it comes.',
-      trophies: pick(22, 23, 24, 25, 26, 27, 29),
+      text: 'Then the strangers. Each one has a strand of missions around the state; finish eight strands for Strangers & Freaks, and take each character finale — Andy, Kenton, Billy, Randy, Tyrone — when its last mission appears.',
+      trophies: take(22, 23, 24, 25, 26, 27, 29),
     },
     {
       title: 'Phase 3 — Activities and skills',
-      text: 'Sample every activity once, then chase the skill trophies: stunts, races, fishing, the arcade, the shooting range and the drone races. These are counts and medals, not story moments — grind them at your own pace.',
-      trophies: pick(15, 16, 17, 18, 19, 20, 21, 32, 36, 38, 39, 51),
+      text: 'Then the open-world grind: try every activity once, then chase the counted ones — 250 stunts, 20 races, 50 challenges, gold at the range, drone wins everywhere. No story gates here, so go at your own pace.',
+      trophies: take(15, 16, 17, 18, 19, 20, 21, 32, 36, 38, 39, 51),
     },
     {
       title: 'Phase 4 — Collectibles and the map',
-      text: 'Meditation spots, card sets, WAiNK spots, vehicles and every corner of Leonida. Work region by region so nothing is left, and use the checklist filters to see what remains.',
-      trophies: pick(28, 30, 31, 35, 42),
+      text: 'Collectibles next: meditation spots, card sets, WAiNK tags, vehicles, and every corner of the map. Sweep region by region and use the kind and missable filters to see what is still missing.',
+      trophies: take(28, 30, 31, 35, 42),
     },
     {
       title: 'Phase 5 — Heists, money and cleanup',
-      text: 'Bank vaults, armored trucks, gang operations and the money trophies. Buy the garages last, check the per-kind progress for anything left, and A Long Road — 100% completion — pops with the final item.',
-      trophies: pick(33, 34, 37, 40, 41, 43, 52, 53, 54, 55, 14),
+      text: 'Last: the heists and the money — vaults, armored trucks, gang operations, laundered bills, shop spending, garages. When everything else is ticked, 100% completion pops and the platinum follows.',
+      trophies: take(33, 34, 37, 40, 41, 43, 52, 53, 54, 55, 14),
     },
   ];
 }
