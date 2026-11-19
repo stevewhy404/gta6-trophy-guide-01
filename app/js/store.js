@@ -30,6 +30,13 @@ export function toggleEarned(earned, id) {
   return next;
 }
 
+// Start over from zero: clears the saved ticks and hands back an empty set.
+// The atlas never calls this on its own — it is here for a reset button.
+export function clearEarned() {
+  localStorage.removeItem(PROGRESS_KEY);
+  return new Set();
+}
+
 export function exportEarned(earned) {
   const blob = new Blob([JSON.stringify([...earned].sort((a, b) => a - b), null, 2)], {
     type: 'application/json',

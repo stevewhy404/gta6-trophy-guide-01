@@ -2,8 +2,9 @@
 // URL asks for. Deep links: ?view=guide|roadmap|missables, ?open=<trophy
 // id>, and ?seed=<n> marks the first n trophies earned for a demo or a
 // screenshot (in memory only — it never writes to localStorage).
+// Press / anywhere to jump to the search box.
 
-import { KIND_LABELS, byId, loadAtlas } from './data.js';
+import { KIND_LABELS, byId, kindTotals, loadAtlas } from './data.js';
 import { exportEarned, importEarned, loadEarned, toggleEarned } from './store.js';
 import { fillSheet, renderGrid, renderMissables, renderProgress, renderRoadmap } from './views.js';
 
@@ -81,16 +82,28 @@ async function boot() {
   }
 
   const kindSelect = document.getElementById('kind-filter');
+  const totals = kindTotals(state.doc);
   for (const kind of Object.keys(KIND_LABELS).filter((k) => k !== 'kind').sort()) {
     const option = document.createElement('option');
     option.value = kind;
-    option.textContent = KIND_LABELS[kind];
+    option.textContent = `${KIND_LABELS[kind]} (${totals[kind] ?? 0})`;
     kindSelect.append(option);
   }
 
-  document.getElementById('search').addEventListener('input', (e) => {
+  const search = document.getElementById('search');
+  search.addEventListener('input', (e) => {
     state.filters.query = e.target.value;
     rerender();
+  });
+  // "/" focuses the search box from anywhere, unless the player is already
+  // typing in a field or the detail sheet is open.
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = document.activeElement?.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (document.getElementById('sheet').open) return;
+    e.preventDefault();
+    search.focus();
   });
   document.getElementById('grade-filter').addEventListener('change', (e) => {
     state.filters.grade = e.target.value;

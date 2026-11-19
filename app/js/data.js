@@ -43,6 +43,14 @@ export function gradeTotals(doc) {
   return out;
 }
 
+// How many trophies each kind holds, so the kind filter can show counts
+// next to the label instead of making the player guess what is in there.
+export function kindTotals(doc) {
+  const out = {};
+  for (const t of doc.trophies) out[t.kind] = (out[t.kind] ?? 0) + 1;
+  return out;
+}
+
 export function missableList(doc) {
   return doc.trophies.filter((t) => t.missable);
 }

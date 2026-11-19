@@ -31,6 +31,20 @@ body {
   min-height: 100vh;
 }
 
+/* Keyboard users get a visible ring; mouse clicks stay clean. */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.noscript-note {
+  max-width: 1080px;
+  margin: 16px auto 0;
+  padding: 12px 20px;
+  color: var(--gold);
+  font-size: 14px;
+}
+
 .atlas-head {
   max-width: 1080px;
   margin: 0 auto;

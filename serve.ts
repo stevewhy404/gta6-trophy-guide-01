@@ -2,8 +2,8 @@
 //
 // `node serve.ts` serves app/ on http://localhost:8080 (pass --port <n> for
 // another port). It sends the MIME types a browser needs, refuses any path
-// outside app/, and otherwise does nothing clever: a development convenience,
-// not a web server for the internet.
+// outside app/, answers HEAD with headers only, and otherwise does nothing
+// clever: a development convenience, not a web server for the internet.
 
 import { createReadStream, statSync } from 'node:fs';
 import { createServer } from 'node:http';
@@ -61,7 +61,9 @@ createServer((request, response) => {
     'content-length': size,
     'content-type': MIME[extname(file).toLowerCase()] ?? 'application/octet-stream',
   });
-  createReadStream(file).pipe(response);
+  // HEAD asks for the headers only — no body, same status and length.
+  if (request.method === 'HEAD') response.end();
+  else createReadStream(file).pipe(response);
 }).listen(port, '127.0.0.1', () => {
   console.log(`app/ is on http://localhost:${port}`);
 });

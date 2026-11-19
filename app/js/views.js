@@ -2,7 +2,7 @@
 // missables page. All rendering is plain DOM built from the atlas data —
 // no framework, no templates fetched over the network.
 
-import { GRADE_ORDER, KIND_LABELS, earnedTotals, gradeTotals, missableList, phases } from './data.js';
+import { GRADE_ORDER, KIND_LABELS, earnedTotals, gradeTotals, matchesQuery, missableList, phases } from './data.js';
 
 function el(tag, cls, text) {
   const node = document.createElement(tag);
@@ -77,17 +77,14 @@ export function card(doc, trophy, earned, hideSpoilers, onToggle, onOpen) {
 
 export function renderGrid(doc, earned, filters, onToggle, onOpen) {
   const grid = document.getElementById('grid');
-  const shown = doc.trophies.filter((t) => {
+  const query = (filters.query ?? '').trim();
+  const list = doc.trophies.filter((t) => {
     if (filters.grade !== 'all' && t.grade !== filters.grade) return false;
     if (filters.kind !== 'all' && t.kind !== filters.kind) return false;
     if (filters.earnedOnly && !earned.has(t.id)) return false;
-    return true;
-  });
-  const query = (filters.query ?? '').trim();
-  const list = shown.filter((t) => {
-    if (!query) return true;
-    const hay = `${t.name} ${t.description} ${t.guide}`.toLowerCase();
-    return query.toLowerCase().split(/\s+/).every((w) => w && hay.includes(w));
+    // One search rule for the whole atlas: data.js owns it, so the grid
+    // and the sheet can never drift apart on what a word matches.
+    return matchesQuery(t, query);
   });
   grid.replaceChildren();
   for (const t of list) grid.append(card(doc, t, earned, filters.hideSpoilers, onToggle, onOpen));
