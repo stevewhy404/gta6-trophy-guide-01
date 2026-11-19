@@ -1,1 +1,503 @@
-{"counts":{"bronze":46,"gold":2,"platinum":1,"silver":6,"total":55},"missable_rule":"A trophy counts as missable when it is tied to one named story mission or a single one-off story beat. Story missions can usually be replayed, so a flag means do it when it comes up, not that it is gone for good.","source_legend":{"advice":"This atlas's own advice, read from the official description — not yet checked inside the game","official":"Exophase — GTA VI trophy list: the official trophy names, descriptions and grades as PlayStation publishes them"},"title":"Leonida Trophy Atlas — GTA VI (PS5)","trophies":[{"description":"Congratulations! You're a Leonida Legend.","grade":"platinum","guide":"Earn every other trophy in Leonida. The platinum lands the moment the 54th pops — no separate task of its own.","id":1,"kind":"completion","missable":false,"name":"Vice Got a Price!","sources":["official","advice"]},{"description":"Complete Gone Fishing.","grade":"bronze","guide":"Play through the opening mission Gone Fishing. It unlocks as the story moves on — you cannot pass it by.","id":2,"kind":"story","missable":true,"name":"Just Like Paradise","sources":["official","advice"]},{"description":"Complete Chapter 1.","grade":"bronze","guide":"Finish Chapter 1. Keep following the story and it pops at the chapter's end.","id":3,"kind":"story","missable":false,"name":"Paradise Lost","sources":["official","advice"]},{"description":"Complete Chapter 2.","grade":"bronze","guide":"Finish Chapter 2. Story only — keep playing and it arrives on its own.","id":4,"kind":"story","missable":false,"name":"T**s Ass Drug Money","sources":["official","advice"]},{"description":"Complete Chapter 3.","grade":"bronze","guide":"Finish Chapter 3. Another story beat: just keep the campaign going.","id":5,"kind":"story","missable":false,"name":"Vice City, Baby!","sources":["official","advice"]},{"description":"Complete Chapter 4.","grade":"bronze","guide":"Finish Chapter 4. The last chapter trophy before the finale.","id":6,"kind":"story","missable":false,"name":"Top Of The World, Ma","sources":["official","advice"]},{"description":"Complete the final mission.","grade":"gold","guide":"Finish the final mission. The gold for seeing the story through to its ending.","id":7,"kind":"story","missable":true,"name":"You Gotta Know When to Get Off","sources":["official","advice"]},{"description":"Complete Breakfast Run.","grade":"bronze","guide":"Complete the mission Breakfast Run. Play it when it appears in the story — mission trophies come from named jobs, not free roam.","id":8,"kind":"mission","missable":true,"name":"Trust","sources":["official","advice"]},{"description":"Complete The Cartel Heist.","grade":"bronze","guide":"Complete The Cartel Heist. A named story heist: run it when the campaign offers it.","id":9,"kind":"mission","missable":true,"name":"Break the Bank","sources":["official","advice"]},{"description":"Complete Child's Play.","grade":"bronze","guide":"Complete Child's Play. Finish that story mission when it comes up.","id":10,"kind":"mission","missable":true,"name":"Family Matters","sources":["official","advice"]},{"description":"Complete Headliners.","grade":"bronze","guide":"Complete Headliners. A story mission — take it when the game hands it to you.","id":11,"kind":"mission","missable":true,"name":"DWNFALL","sources":["official","advice"]},{"description":"Complete VCIA Takedown.","grade":"bronze","guide":"Complete VCIA Takedown. A story job at the airport: run it when it appears.","id":12,"kind":"mission","missable":true,"name":"Hi-Jacked","sources":["official","advice"]},{"description":"Complete Operation Savage Glory.","grade":"bronze","guide":"Complete Operation Savage Glory. Finish the operation when the story reaches it.","id":13,"kind":"mission","missable":true,"name":"Snow Storm","sources":["official","advice"]},{"description":"Attain 100% Completion.","grade":"gold","guide":"Reach 100% completion. Everything counts: missions, activities, collectibles, exploration. Use the tracker to see what is left.","id":14,"kind":"completion","missable":false,"name":"A Long Road","sources":["official","advice"]},{"description":"Complete 250 Stunts.","grade":"silver","guide":"Complete 250 stunts. Jump, drift and near-miss your way there — stunts add up across the whole map, so keep driving loud.","id":15,"kind":"activity","missable":false,"name":"Cunning Stunts","sources":["official","advice"]},{"description":"Try each type of activity once.","grade":"bronze","guide":"Try each type of activity once. Sample all nine activity types — one try each is enough, no mastery needed.","id":16,"kind":"activity","missable":false,"name":"Master of None","sources":["official","advice"]},{"description":"Earn a gold medal in all Shooting Range challenges.","grade":"silver","guide":"Earn a gold medal in all Shooting Range challenges. Gold every one of the 42 range challenges — steady aim and the right weapon for each lane.","id":17,"kind":"activity","missable":false,"name":"The Shootist","sources":["official","advice"]},{"description":"Win a Top Fun Drone Race at every location.","grade":"bronze","guide":"Win a Top Fun Drone Race at every location. Win a drone race at all 14 spots — learn each course's shortcuts.","id":18,"kind":"activity","missable":false,"name":"Top Fun","sources":["official","advice"]},{"description":"Win 20 different races.","grade":"bronze","guide":"Win 20 different races. Win twenty distinct races across Leonida — vary the events, repeats do not count.","id":19,"kind":"activity","missable":false,"name":"Earn Cash, Not Kudos","sources":["official","advice"]},{"description":"Beat Cal in a fishing challenge.","grade":"bronze","guide":"Beat Cal in a fishing challenge. Out-fish Cal in his challenge — watch the line tension and reel when it slackens.","id":20,"kind":"activity","missable":false,"name":"Baited My Tackle","sources":["official","advice"]},{"description":"Complete an arcade game.","grade":"bronze","guide":"Complete an arcade game. Finish any arcade game once — pick the shortest cabinet you find.","id":21,"kind":"activity","missable":false,"name":"Stick Fiddler","sources":["official","advice"]},{"description":"Complete the final mission for Andy.","grade":"bronze","guide":"Complete the final mission for Andy. Run Andy's last job when the strand reaches it.","id":22,"kind":"mission","missable":true,"name":"Road to Rehabilitation","sources":["official","advice"]},{"description":"Complete the final mission for Kenton.","grade":"bronze","guide":"Complete the final mission for Kenton. Kenton's strand ends with this job — take it when it appears.","id":23,"kind":"mission","missable":true,"name":"This Was No Boat Accident","sources":["official","advice"]},{"description":"Complete the final mission for Billy.","grade":"bronze","guide":"Complete the final mission for Billy. Billy's last mission closes his strand.","id":24,"kind":"mission","missable":true,"name":"The Lone Rider","sources":["official","advice"]},{"description":"Complete 8 mission strands for strangers across the state of Leonida.","grade":"silver","guide":"Complete 8 mission strands for strangers across Leonida. Finish eight stranger strands — follow the odd characters' markers around the state.","id":25,"kind":"mission","missable":false,"name":"Strangers & Freaks","sources":["official","advice"]},{"description":"Complete the final mission for Randy.","grade":"bronze","guide":"Complete the final mission for Randy. Randy's strand ends here — run his last job.","id":26,"kind":"mission","missable":true,"name":"Supply & Demand","sources":["official","advice"]},{"description":"Complete the final mission for Tyrone.","grade":"bronze","guide":"Complete the final mission for Tyrone. Tyrone's last job closes his strand.","id":27,"kind":"mission","missable":true,"name":"Spin On This!","sources":["official","advice"]},{"description":"Meditate at every spot across Leonida.","grade":"bronze","guide":"Meditate at every spot across Leonida. Find all 18 meditation spots and sit a while at each.","id":28,"kind":"activity","missable":false,"name":"Positive Mental Attitude","sources":["official","advice"]},{"description":"Hunt a unique animal for Bret.","grade":"bronze","guide":"Hunt a unique animal for Bret. Track down the one animal Bret wants — follow his clues, then take the shot clean.","id":29,"kind":"social","missable":false,"name":"Fair Game","sources":["official","advice"]},{"description":"Complete 3 Collectible Card sets.","grade":"silver","guide":"Complete 3 Collectible Card sets. Finish any three card sets — trade duplicates and check every shop shelf.","id":30,"kind":"collectible","missable":false,"name":"Don't Touch My Deck","sources":["official","advice"]},{"description":"WAiNK It at 100 locations.","grade":"silver","guide":"WAiNK It at 100 locations. Tag 100 spots with WAiNK It — the counter climbs as you travel, so tag everywhere you stop.","id":31,"kind":"collectible","missable":false,"name":"You WAiNKer!","sources":["official","advice"]},{"description":"Complete 50 Challenges.","grade":"bronze","guide":"Complete 50 Challenges. Clear fifty challenges of any kind — the tracker shows which are closest.","id":32,"kind":"activity","missable":false,"name":"One Last Thing","sources":["official","advice"]},{"description":"Lose a 4 star Wanted Level with your partner and escape the heat.","grade":"bronze","guide":"Lose a 4 star Wanted Level with your partner and escape the heat. With your partner beside you, shake a four-star wanted level and get clear — do it while the story still pairs you up.","id":33,"kind":"combat","missable":true,"name":"Hot Together","sources":["official","advice"]},{"description":"Rob 3 shops back-to-back with your partner without losing your Wanted Level.","grade":"bronze","guide":"Rob 3 shops back-to-back with your partner without losing your Wanted Level. Hit three shops in a row with your partner and keep the heat — plan the route before the first door.","id":34,"kind":"combat","missable":true,"name":"Retail Therapy","sources":["official","advice"]},{"description":"Discover 100 vehicles.","grade":"bronze","guide":"Discover 100 vehicles. Spot a hundred different vehicles — drive everything you see and the count grows.","id":35,"kind":"collectible","missable":false,"name":"Whip It Good","sources":["official","advice"]},{"description":"Take down 5 enemies in a single use of Combat Focus.","grade":"bronze","guide":"Take down 5 enemies in a single use of Combat Focus. Line up five targets, trigger Combat Focus, and drop them all before it ends.","id":36,"kind":"combat","missable":false,"name":"Gunslinger","sources":["official","advice"]},{"description":"Make an unscheduled departure at VCIA.","grade":"bronze","guide":"Make an unscheduled departure at VCIA. Leave the airport on your own terms — any unscheduled exit counts.","id":37,"kind":"combat","missable":false,"name":"Catch Me If You Can","sources":["official","advice"]},{"description":"Kinda hot in these Rhinos.","grade":"bronze","guide":"Kinda hot in these Rhinos. Deal with the Rhinos — steal one, wreck one, or survive one rolling your way.","id":38,"kind":"combat","missable":false,"name":"Challenging Tank","sources":["official","advice"]},{"description":"Rob a jewelry store without being detected.","grade":"bronze","guide":"Rob a jewelry store without being detected. Get in and out of a jewelry store unseen — quiet entry, no alarms, no witnesses.","id":39,"kind":"combat","missable":false,"name":"Sneakthief","sources":["official","advice"]},{"description":"Rob 5 Bank Vaults and escape.","grade":"silver","guide":"Rob 5 Bank Vaults and escape. Crack five bank vaults and get away clean each time.","id":40,"kind":"combat","missable":false,"name":"Maximum Withdrawal","sources":["official","advice"]},{"description":"Rob an Armored Truck and escape.","grade":"bronze","guide":"Rob an Armored Truck and escape. Hit an armored truck and vanish before backup arrives.","id":41,"kind":"combat","missable":false,"name":"A Classic Blitz Play","sources":["official","advice"]},{"description":"Explore all of Leonida.","grade":"bronze","guide":"Explore all of Leonida. Visit all 52 areas of the state — the map fills in as you go.","id":42,"kind":"exploration","missable":false,"name":"The Goodtime State","sources":["official","advice"]},{"description":"Rob an Illegal Operation belonging to each gang.","grade":"bronze","guide":"Rob an Illegal Operation belonging to each gang. Hit one illegal operation for each of the nine gangs.","id":43,"kind":"money","missable":false,"name":"Pest Control","sources":["official","advice"]},{"description":"Enjoy a cocktail with a view on Ocean Beach.","grade":"bronze","guide":"Enjoy a cocktail with a view on Ocean Beach. Order a cocktail on Ocean Beach and take in the view — a quiet story beat, easy to walk past.","id":44,"kind":"story","missable":true,"name":"In The Beginning…","sources":["official","advice"]},{"description":"Smash your way out of a vehicle showroom in classic style.","grade":"bronze","guide":"Smash your way out of a vehicle showroom in classic style. Drive out of a showroom through the glass — style points count, so make it loud.","id":45,"kind":"social","missable":true,"name":"Capital Offense","sources":["official","advice"]},{"description":"Follow-through at the Kolt & Associates' bowling alley.","grade":"bronze","guide":"Follow-through at the Kolt & Associates' bowling alley. Play a frame at the Kolt & Associates alley — follow through on the shot.","id":46,"kind":"exploration","missable":true,"name":"Let’s Go Bowling","sources":["official","advice"]},{"description":"A partnership with mass appeal.","grade":"bronze","guide":"A partnership with mass appeal. A moment with your partner that the whole state notices — it comes once, so be ready when it does.","id":47,"kind":"social","missable":true,"name":"Personal Best","sources":["official","advice"]},{"description":"Choices made (for better or worse).","grade":"bronze","guide":"Choices made (for better or worse). Make the choices the story offers — the count climbs toward 500 across the campaign.","id":48,"kind":"story","missable":true,"name":"Actions Speak Louder","sources":["official","advice"]},{"description":"Second time's the charm.","grade":"bronze","guide":"Second time's the charm. Fail once, then succeed on the second try — a story beat that only triggers that way.","id":49,"kind":"story","missable":true,"name":"Bad Luck, I Guess","sources":["official","advice"]},{"description":"What the hell just happened?","grade":"bronze","guide":"What the hell just happened? Witness something strange — keep your eyes open in the odd corners of Leonida.","id":50,"kind":"story","missable":true,"name":"The Truth Is Out There","sources":["official","advice"]},{"description":"Bowl 'em over with a melee drive-by.","grade":"bronze","guide":"Bowl 'em over with a melee drive-by. Knock someone flat with a melee drive-by — line the car up and swing as you pass.","id":51,"kind":"activity","missable":false,"name":"Ten Pin","sources":["official","advice"]},{"description":"Earn $250,000 laundering Marked Bills through your contacts.","grade":"bronze","guide":"Earn $250,000 laundering Marked Bills through your contacts. Push a quarter-million in marked bills through your contacts — the laundering cut is the cost of clean money.","id":52,"kind":"money","missable":false,"name":"Dime on the Dollar","sources":["official","advice"]},{"description":"Spend $100,000 across all shops.","grade":"bronze","guide":"Spend $100,000 across all shops. Spend a hundred grand in shops — cars, clothes and guns all count toward it.","id":53,"kind":"money","missable":false,"name":"Treat Yo Self","sources":["official","advice"]},{"description":"Purchase all garage properties.","grade":"bronze","guide":"Purchase all garage properties. Buy all eight garage properties — they pay off as storage for the collection.","id":54,"kind":"money","missable":false,"name":"Little Boxes","sources":["official","advice"]},{"description":"Register 10 vehicles to the Scooter Bros app.","grade":"bronze","guide":"Register 10 vehicles to the Scooter Bros app. Register ten vehicles in the Scooter Bros app — any ten you own.","id":55,"kind":"collectible","missable":false,"name":"On the Spot","sources":["official","advice"]}]}
+{
+  "game": "Grand Theft Auto VI",
+  "platform": "PlayStation 5",
+  "list": "the official 55 trophies, 2026-11-18",
+  "source": "Official trophy descriptions as handed out with the competition starter",
+  "trophies": [
+    {
+      "id": 1,
+      "name": "Vice Got a Price!",
+      "grade": "platinum",
+      "description": "Congratulations! You're a Leonida Legend.",
+      "guide": "Earn every other trophy on this list. The platinum unlocks on its own once the other 54 are yours, so follow the roadmap: play the story first, sweep the missables while you are there, then clean up activities and collectibles. Source: official description.",
+      "missable": false,
+      "kind": "story"
+    },
+    {
+      "id": 2,
+      "name": "Just Like Paradise",
+      "grade": "bronze",
+      "description": "Complete Gone Fishing.",
+      "guide": "Finish the opening mission, Gone Fishing. It is the first mission of the game and only happens once in a playthrough, so it is flagged missable — it unlocks naturally as you start the story. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 3,
+      "name": "Paradise Lost",
+      "grade": "bronze",
+      "description": "Complete Chapter 1.",
+      "guide": "Play through to the end of Chapter 1. A one-time story beat, flagged missable; it comes automatically if you finish the chapter. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 4,
+      "name": "T**s Ass Drug Money",
+      "grade": "bronze",
+      "description": "Complete Chapter 2.",
+      "guide": "Finish Chapter 2. Story trophy tied to a one-time chapter ending, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 5,
+      "name": "Vice City, Baby!",
+      "grade": "bronze",
+      "description": "Complete Chapter 3.",
+      "guide": "Finish Chapter 3. Story trophy tied to a one-time chapter ending, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 6,
+      "name": "Top Of The World, Ma",
+      "grade": "bronze",
+      "description": "Complete Chapter 4.",
+      "guide": "Finish Chapter 4. Story trophy tied to a one-time chapter ending, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 7,
+      "name": "You Gotta Know When to Get Off",
+      "grade": "gold",
+      "description": "Complete the final mission.",
+      "guide": "Finish the final mission of the story. The finale only happens once per playthrough, so this gold is flagged missable — there is no way back to it after the credits except a new game or chapter replay. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 8,
+      "name": "Trust",
+      "grade": "bronze",
+      "description": "Complete Breakfast Run.",
+      "guide": "Play and finish the story mission Breakfast Run when it appears. A one-time story mission, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 9,
+      "name": "Break the Bank",
+      "grade": "bronze",
+      "description": "Complete The Cartel Heist.",
+      "guide": "Play and finish the story mission The Cartel Heist. A one-time story mission, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 10,
+      "name": "Family Matters",
+      "grade": "bronze",
+      "description": "Complete Child's Play.",
+      "guide": "Play and finish the story mission Child's Play. A one-time story mission, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 11,
+      "name": "DWNFALL",
+      "grade": "bronze",
+      "description": "Complete Headliners.",
+      "guide": "Play and finish the story mission Headliners. A one-time story mission, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 12,
+      "name": "Hi-Jacked",
+      "grade": "bronze",
+      "description": "Complete VCIA Takedown.",
+      "guide": "Play and finish the story mission VCIA Takedown at the airport. A one-time story mission, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 13,
+      "name": "Snow Storm",
+      "grade": "bronze",
+      "description": "Complete Operation Savage Glory.",
+      "guide": "Play and finish the story mission Operation Savage Glory. A one-time story mission, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 14,
+      "name": "A Long Road",
+      "grade": "gold",
+      "description": "Attain 100% Completion.",
+      "guide": "Reach 100% completion. The long haul: finish the story, every activity type, the collectibles and the side strands until the completion counter reads 100%. Use the tracker to sweep up the last stragglers. Source: official description.",
+      "missable": false,
+      "kind": "completion"
+    },
+    {
+      "id": 15,
+      "name": "Cunning Stunts",
+      "grade": "silver",
+      "description": "Complete 250 Stunts.",
+      "guide": "Pull off 250 stunts. Stunt jumps, near misses and airtime all count — string them together while driving between missions and 250 adds up fast across a full playthrough. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 16,
+      "name": "Master of None",
+      "grade": "bronze",
+      "description": "Try each type of activity once.",
+      "guide": "Try all 9 activity types once. Sample one of everything — races, fishing, the arcade, the shooting range, drone races, bowling, meditation, hunting and one more — and the trophy pops. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 17,
+      "name": "The Shootist",
+      "grade": "silver",
+      "description": "Earn a gold medal in all Shooting Range challenges.",
+      "guide": "Gold all 42 Shooting Range challenges. Work through each range challenge until every one shows a gold medal; the range keeps your best medal per challenge. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 18,
+      "name": "Top Fun",
+      "grade": "bronze",
+      "description": "Win a Top Fun Drone Race at every location.",
+      "guide": "Win a Top Fun drone race at all 14 locations. Learn each course's line, then win at every spot. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 19,
+      "name": "Earn Cash, Not Kudos",
+      "grade": "bronze",
+      "description": "Win 20 different races.",
+      "guide": "Win 20 different races. Any race type counts — work through the race list across Leonida until 20 distinct wins are on the board. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 20,
+      "name": "Baited My Tackle",
+      "grade": "bronze",
+      "description": "Beat Cal in a fishing challenge.",
+      "guide": "Find Cal at a fishing spot and out-fish him in the challenge. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 21,
+      "name": "Stick Fiddler",
+      "grade": "bronze",
+      "description": "Complete an arcade game.",
+      "guide": "Pick any arcade cabinet and finish a full game. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 22,
+      "name": "Road to Rehabilitation",
+      "grade": "bronze",
+      "description": "Complete the final mission for Andy.",
+      "guide": "Finish Andy's last mission when it appears. His story strand ends here, so it is flagged missable — a one-time story beat. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 23,
+      "name": "This Was No Boat Accident",
+      "grade": "bronze",
+      "description": "Complete the final mission for Kenton.",
+      "guide": "Finish Kenton's last mission. A one-time story beat, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 24,
+      "name": "The Lone Rider",
+      "grade": "bronze",
+      "description": "Complete the final mission for Billy.",
+      "guide": "Finish Billy's last mission. A one-time story beat, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 25,
+      "name": "Strangers & Freaks",
+      "grade": "silver",
+      "description": "Complete 8 mission strands for strangers across the state of Leonida.",
+      "guide": "Finish 8 stranger mission strands. Pick up stranger missions as you explore Leonida and see eight strands through to the end. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 26,
+      "name": "Supply & Demand",
+      "grade": "bronze",
+      "description": "Complete the final mission for Randy.",
+      "guide": "Finish Randy's last mission. A one-time story beat, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 27,
+      "name": "Spin On This!",
+      "grade": "bronze",
+      "description": "Complete the final mission for Tyrone.",
+      "guide": "Finish Tyrone's last mission. A one-time story beat, flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 28,
+      "name": "Positive Mental Attitude",
+      "grade": "bronze",
+      "description": "Meditate at every spot across Leonida.",
+      "guide": "Meditate at all 18 spots. Find every meditation spot across the map and sit through a session at each. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 29,
+      "name": "Fair Game",
+      "grade": "bronze",
+      "description": "Hunt a unique animal for Bret.",
+      "guide": "Track down the unique animal Bret asks for and hunt it. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 30,
+      "name": "Don't Touch My Deck",
+      "grade": "silver",
+      "description": "Complete 3 Collectible Card sets.",
+      "guide": "Complete 3 collectible card sets. Cards are scattered across Leonida — gather full sets; three complete sets pops the trophy. Source: official description.",
+      "missable": false,
+      "kind": "collectible"
+    },
+    {
+      "id": 31,
+      "name": "You WAiNKer!",
+      "grade": "silver",
+      "description": "WAiNK It at 100 locations.",
+      "guide": "WAiNK It at 100 locations. The WAiNK It spots are all over the map — hit a hundred of them. Source: official description.",
+      "missable": false,
+      "kind": "collectible"
+    },
+    {
+      "id": 32,
+      "name": "One Last Thing",
+      "grade": "bronze",
+      "description": "Complete 50 Challenges.",
+      "guide": "Finish 50 challenges. Challenges stack up across everything you do; 50 completions unlocks it. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 33,
+      "name": "Hot Together",
+      "grade": "bronze",
+      "description": "Lose a 4 star Wanted Level with your partner and escape the heat.",
+      "guide": "During a partner story moment, build a 4-star wanted level, then break line of sight together and escape. It happens in a one-time story context, so it is flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 34,
+      "name": "Retail Therapy",
+      "grade": "bronze",
+      "description": "Rob 3 shops back-to-back with your partner without losing your Wanted Level.",
+      "guide": "Chain three shop robberies with your partner in one run while keeping your wanted level. It happens in a one-time story context, so it is flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 35,
+      "name": "Whip It Good",
+      "grade": "bronze",
+      "description": "Discover 100 vehicles.",
+      "guide": "Discover 100 vehicles. Drive or encounter a hundred distinct vehicles — variety counts, so try everything from scooters to trucks. Source: official description.",
+      "missable": false,
+      "kind": "collectible"
+    },
+    {
+      "id": 36,
+      "name": "Gunslinger",
+      "grade": "bronze",
+      "description": "Take down 5 enemies in a single use of Combat Focus.",
+      "guide": "Down 5 enemies in one Combat Focus. Group enemies up, trigger Combat Focus, and drop five before it ends. Source: official description.",
+      "missable": false,
+      "kind": "combat"
+    },
+    {
+      "id": 37,
+      "name": "Catch Me If You Can",
+      "grade": "bronze",
+      "description": "Make an unscheduled departure at VCIA.",
+      "guide": "Leave VCIA in an unscheduled way. This is a one-time story beat at the airport, so it is flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 38,
+      "name": "Challenging Tank",
+      "grade": "bronze",
+      "description": "Kinda hot in these Rhinos.",
+      "guide": "Deal with Rhino tanks. Take on the Rhinos — heavy weapons and good cover help. Source: official description.",
+      "missable": false,
+      "kind": "combat"
+    },
+    {
+      "id": 39,
+      "name": "Sneakthief",
+      "grade": "bronze",
+      "description": "Rob a jewelry store without being detected.",
+      "guide": "Rob a jewelry store without being seen. Go in quiet: no alarms, no witnesses. Plan the approach and the exit. Source: official description.",
+      "missable": false,
+      "kind": "combat"
+    },
+    {
+      "id": 40,
+      "name": "Maximum Withdrawal",
+      "grade": "silver",
+      "description": "Rob 5 Bank Vaults and escape.",
+      "guide": "Rob 5 bank vaults and escape each time. Five vault jobs, five clean getaways. Source: official description.",
+      "missable": false,
+      "kind": "combat"
+    },
+    {
+      "id": 41,
+      "name": "A Classic Blitz Play",
+      "grade": "bronze",
+      "description": "Rob an Armored Truck and escape.",
+      "guide": "Hit an armored truck on the road, grab the cash and break away before backup arrives. Source: official description.",
+      "missable": false,
+      "kind": "combat"
+    },
+    {
+      "id": 42,
+      "name": "The Goodtime State",
+      "grade": "bronze",
+      "description": "Explore all of Leonida.",
+      "guide": "Explore all 52 areas of Leonida. Cover the whole map — every named area counts once you have set foot in it. Source: official description.",
+      "missable": false,
+      "kind": "exploration"
+    },
+    {
+      "id": 43,
+      "name": "Pest Control",
+      "grade": "bronze",
+      "description": "Rob an Illegal Operation belonging to each gang.",
+      "guide": "Rob one illegal operation of each of the 9 gangs. Nine gangs, nine operations. Source: official description.",
+      "missable": false,
+      "kind": "collectible"
+    },
+    {
+      "id": 44,
+      "name": "In The Beginning…",
+      "grade": "bronze",
+      "description": "Enjoy a cocktail with a view on Ocean Beach.",
+      "guide": "Have a cocktail with a view on Ocean Beach. Find the spot, order the drink and take in the view. Source: official description.",
+      "missable": false,
+      "kind": "exploration"
+    },
+    {
+      "id": 45,
+      "name": "Capital Offense",
+      "grade": "bronze",
+      "description": "Smash your way out of a vehicle showroom in classic style.",
+      "guide": "Smash out of a vehicle showroom in classic style. This is a one-time story moment in a showroom, so it is flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 46,
+      "name": "Let’s Go Bowling",
+      "grade": "bronze",
+      "description": "Follow-through at the Kolt & Associates' bowling alley.",
+      "guide": "Play a full game at the Kolt & Associates bowling alley. Follow through at the alley — a complete game counts. Source: official description.",
+      "missable": false,
+      "kind": "activity"
+    },
+    {
+      "id": 47,
+      "name": "Personal Best",
+      "grade": "bronze",
+      "description": "A partnership with mass appeal.",
+      "guide": "A partnership moment with mass appeal. A one-time story beat with your partner, so it is flagged missable. Source: official description.",
+      "missable": true,
+      "kind": "story"
+    },
+    {
+      "id": 48,
+      "name": "Actions Speak Louder",
+      "grade": "bronze",
+      "description": "Choices made (for better or worse).",
+      "guide": "Make choices across the story. The counter tracks decisions — keep deciding and it climbs toward 500. Source: official description.",
+      "missable": false,
+      "kind": "exploration"
+    },
+    {
+      "id": 49,
+      "name": "Bad Luck, I Guess",
+      "grade": "bronze",
+      "description": "Second time's the charm.",
+      "guide": "Fail once, then succeed on the second try at the same thing. Source: official description.",
+      "missable": false,
+      "kind": "exploration"
+    },
+    {
+      "id": 50,
+      "name": "The Truth Is Out There",
+      "grade": "bronze",
+      "description": "What the hell just happened?",
+      "guide": "Witness something strange out in Leonida. Keep your eyes open off the beaten path. Source: official description.",
+      "missable": false,
+      "kind": "exploration"
+    },
+    {
+      "id": 51,
+      "name": "Ten Pin",
+      "grade": "bronze",
+      "description": "Bowl 'em over with a melee drive-by.",
+      "guide": "Knock someone down with a melee drive-by — a melee attack from a moving vehicle. Source: official description.",
+      "missable": false,
+      "kind": "combat"
+    },
+    {
+      "id": 52,
+      "name": "Dime on the Dollar",
+      "grade": "bronze",
+      "description": "Earn $250,000 laundering Marked Bills through your contacts.",
+      "guide": "Launder $250,000 of marked bills. Feed marked bills to your contacts until a quarter of a million is clean. Source: official description.",
+      "missable": false,
+      "kind": "economy"
+    },
+    {
+      "id": 53,
+      "name": "Treat Yo Self",
+      "grade": "bronze",
+      "description": "Spend $100,000 across all shops.",
+      "guide": "Spend $100,000 in shops. Vehicles, clothes, weapons and more all add up. Source: official description.",
+      "missable": false,
+      "kind": "economy"
+    },
+    {
+      "id": 54,
+      "name": "Little Boxes",
+      "grade": "bronze",
+      "description": "Purchase all garage properties.",
+      "guide": "Buy all 8 garage properties. Source: official description.",
+      "missable": false,
+      "kind": "economy"
+    },
+    {
+      "id": 55,
+      "name": "On the Spot",
+      "grade": "bronze",
+      "description": "Register 10 vehicles to the Scooter Bros app.",
+      "guide": "Register 10 vehicles in the Scooter Bros app. Save vehicles into the app until ten are registered. Source: official description.",
+      "missable": false,
+      "kind": "collectible"
+    }
+  ]
+}

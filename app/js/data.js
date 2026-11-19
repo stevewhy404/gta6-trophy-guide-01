@@ -1,103 +1,96 @@
-// Atlas data: the official trophy list plus this atlas's own guides, kinds
-// and flags. Names, descriptions and grades are the official list as
-// PlayStation publishes them; the guide, kind and missable flag on each
-// trophy are this atlas's own work. Fetch once, then hand out read-only
-// views of it.
+// Data layer for the Leonida Trophy Atlas: loads the trophy list and derives
+// every count the app shows, so the numbers on screen always come from the
+// data file and never from a hard-coded constant.
+
+const DATA_URL = 'data/trophies.json';
 
 export const GRADE_ORDER = ['platinum', 'gold', 'silver', 'bronze'];
 
+export const GRADE_LABELS = {
+  platinum: 'Platinum',
+  gold: 'Gold',
+  silver: 'Silver',
+  bronze: 'Bronze',
+};
+
 export const KIND_LABELS = {
+  story: 'Story',
   activity: 'Activity',
   collectible: 'Collectible',
   combat: 'Combat',
-  completion: 'Completion',
   exploration: 'Exploration',
-  kind: 'Kind',
-  mission: 'Mission',
-  money: 'Money',
-  social: 'Social',
-  story: 'Story',
+  completion: 'Completion',
+  economy: 'Economy',
 };
 
-let cache = null;
-
-export async function loadAtlas() {
-  if (cache) return cache;
-  const res = await fetch('data/trophies.json');
-  if (!res.ok) throw new Error(`trophies.json: HTTP ${res.status}`);
-  const doc = await res.json();
-  if (!Array.isArray(doc.trophies) || doc.trophies.length !== 55) {
-    throw new Error(`trophies.json: expected 55 trophies, got ${doc.trophies?.length}`);
+export async function loadTrophies() {
+  const response = await fetch(DATA_URL);
+  if (!response.ok) {
+    throw new Error(`trophy data failed to load (${response.status})`);
   }
-  cache = doc;
-  return doc;
+  const doc = await response.json();
+  const list = Array.isArray(doc.trophies) ? doc.trophies : [];
+  return { meta: doc, trophies: list };
 }
 
-export function byId(doc, id) {
-  return doc.trophies.find((t) => t.id === id) ?? null;
-}
-
-export function gradeTotals(doc) {
-  const out = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
-  for (const t of doc.trophies) out[t.grade] = (out[t.grade] ?? 0) + 1;
-  return out;
-}
-
-// How many trophies each kind holds, so the kind filter can show counts
-// next to the label instead of making the player guess what is in there.
-export function kindTotals(doc) {
-  const out = {};
-  for (const t of doc.trophies) out[t.kind] = (out[t.kind] ?? 0) + 1;
-  return out;
-}
-
-export function missableList(doc) {
-  return doc.trophies.filter((t) => t.missable);
-}
-
-export function earnedTotals(doc, earned) {
-  let got = 0;
-  const byGrade = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
-  for (const t of doc.trophies) {
-    if (earned.has(t.id)) {
-      got += 1;
-      byGrade[t.grade] = (byGrade[t.grade] ?? 0) + 1;
-    }
+// Count trophies per grade, straight from the loaded data.
+export function gradeCounts(trophies) {
+  const counts = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
+  for (const trophy of trophies) {
+    if (Object.hasOwn(counts, trophy.grade)) counts[trophy.grade] += 1;
   }
-  return { got, total: doc.trophies.length, byGrade };
+  return counts;
 }
 
-// The road to the platinum, in the order a player should work it: finish
-// the campaign first, pick up what you pass on the way, then grind the
-// counters and the money, and finally the two completion trophies.
-export function phases(doc) {
-  const kinds = (...wanted) => doc.trophies.filter((t) => wanted.includes(t.kind));
+export function missableCount(trophies) {
+  return trophies.filter((trophy) => trophy.missable === true).length;
+}
+
+export function kindCounts(trophies) {
+  const counts = {};
+  for (const trophy of trophies) {
+    counts[trophy.kind] = (counts[trophy.kind] ?? 0) + 1;
+  }
+  return counts;
+}
+
+// The roadmap the guide recommends: story first, missables while you are
+// there, then everything that can be cleaned up in free roam.
+export function roadmapSteps(trophies) {
+  const story = trophies.filter((t) => t.kind === 'story').length;
+  const missable = missableCount(trophies);
+  const cleanup = trophies.length - story;
   return [
     {
-      title: '1 · Play the story',
-      blurb: 'Finish the campaign. Story and mission trophies fall out of the plot as you go — the missables live here, so grab them when they come up.',
-      list: kinds('story', 'mission'),
+      step: 1,
+      title: 'Play the story',
+      body: `${story} story trophies unlock by finishing chapters and missions. Nothing here needs a special build — just play.`,
     },
     {
-      title: '2 · While you are out there',
-      blurb: 'Exploration, collectibles and the social beats. Most of these happen on the way to somewhere else — keep an eye out and they stack up.',
-      list: kinds('exploration', 'collectible', 'social'),
+      step: 2,
+      title: `Watch the ${missable} missables`,
+      body: 'Missable trophies belong to one-time story beats. Do them while the moment is live; after the credits the only way back is a new game or chapter replay.',
     },
     {
-      title: '3 · Counters and cash',
-      blurb: 'The long grinds: activities, combat feats and money. Save these for after the story, when you can chase numbers without the plot pulling you on.',
-      list: kinds('activity', 'combat', 'money'),
-    },
-    {
-      title: '4 · The last two',
-      blurb: '100% completion, then the platinum. Nothing left to do but watch it pop.',
-      list: kinds('completion'),
+      step: 3,
+      title: `Clean up the other ${cleanup}`,
+      body: 'Activities, collectibles, combat and exploration stay open in free roam after the story. Filter by kind and sweep them up last.',
     },
   ];
 }
 
-export function matchesQuery(trophy, query) {
-  if (!query) return true;
-  const hay = `${trophy.name} ${trophy.description} ${trophy.guide}`.toLowerCase();
-  return query.toLowerCase().split(/\s+/).every((word) => word && hay.includes(word));
+export function filterTrophies(trophies, filters) {
+  const query = (filters.query ?? '').trim().toLowerCase();
+  return trophies.filter((trophy) => {
+    if (filters.grade !== 'all' && trophy.grade !== filters.grade) return false;
+    if (filters.kind !== 'all' && trophy.kind !== filters.kind) return false;
+    if (filters.missableOnly && trophy.missable !== true) return false;
+    if (filters.earned === 'earned' && !filters.earnedIds.has(trophy.id)) return false;
+    if (filters.earned === 'missing' && filters.earnedIds.has(trophy.id)) return false;
+    if (query) {
+      const haystack = `${trophy.name} ${trophy.description} ${trophy.guide}`.toLowerCase();
+      if (!haystack.includes(query)) return false;
+    }
+    return true;
+  });
 }
