@@ -1,48 +1,51 @@
 // Progress store: the earned ticks live in this browser's localStorage and
 // can be exported to a file or imported back. Nothing leaves the browser.
-export const PROGRESS_KEY = 'leonida-atlas-progress-v1';
+// The key is versioned so a future shape change never reads stale data.
 
-function parseIds(raw) {
-  if (!raw) return new Set();
-  let ids;
-  try {
-    ids = JSON.parse(raw);
-  } catch {
-    return new Set();
-  }
-  if (!Array.isArray(ids)) return new Set();
-  return new Set(ids.filter((id) => Number.isInteger(id) && id >= 1 && id <= 55));
-}
+export const PROGRESS_KEY = 'leonida-atlas-progress-v2';
 
-export function loadProgress() {
+function readIds(raw) {
   try {
-    return parseIds(localStorage.getItem(PROGRESS_KEY));
+    const parsed = JSON.parse(raw ?? '[]');
+    if (!Array.isArray(parsed)) return new Set();
+    return new Set(parsed.filter((n) => Number.isInteger(n)));
   } catch {
     return new Set();
   }
 }
 
-export function saveProgress(earned) {
-  try {
-    const sorted = [...earned].sort((a, b) => a - b);
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(sorted));
-  } catch {
-    // Storage full or unavailable: the ticks still work for this visit.
-  }
+export function loadEarned() {
+  return readIds(localStorage.getItem(PROGRESS_KEY));
 }
 
-export function downloadProgress(earned) {
-  const sorted = [...earned].sort((a, b) => a - b);
-  const blob = new Blob([JSON.stringify(sorted, null, 2)], { type: 'application/json' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'leonida-trophy-progress.json';
-  link.click();
-  URL.revokeObjectURL(link.href);
+export function saveEarned(earned) {
+  localStorage.setItem(PROGRESS_KEY, JSON.stringify([...earned].sort((a, b) => a - b)));
 }
 
-export async function readProgressFile(file) {
-  const ids = JSON.parse(await file.text());
-  if (!Array.isArray(ids)) throw new Error('not a progress file');
-  return new Set(ids.filter((id) => Number.isInteger(id) && id >= 1 && id <= 55));
+export function toggleEarned(earned, id) {
+  const next = new Set(earned);
+  if (next.has(id)) next.delete(id);
+  else next.add(id);
+  saveEarned(next);
+  return next;
+}
+
+export function exportEarned(earned) {
+  const blob = new Blob([JSON.stringify([...earned].sort((a, b) => a - b), null, 2)], {
+    type: 'application/json',
+  });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'leonida-atlas-progress.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+export async function importEarned(file, total) {
+  const text = await file.text();
+  const parsed = JSON.parse(text);
+  if (!Array.isArray(parsed)) throw new Error('progress file must be a JSON array of trophy ids');
+  const ids = new Set(parsed.filter((n) => Number.isInteger(n) && n >= 1 && n <= total));
+  saveEarned(ids);
+  return ids;
 }

@@ -1,75 +1,95 @@
 // Atlas data: the official trophy list plus this atlas's own guides, kinds
 // and flags. Names, descriptions and grades are the official list as
 // PlayStation publishes them; the guide, kind and missable flag on each
-// trophy are this atlas's own work.
+// trophy are this atlas's own work. Fetch once, then hand out read-only
+// views of it.
+
 export const GRADE_ORDER = ['platinum', 'gold', 'silver', 'bronze'];
 
-export const KIND_NAMES = {
-  story: 'Story',
-  mission: 'Missions',
-  activity: 'Activities',
-  collectible: 'Collectibles',
-  combat: 'Combat & heists',
+export const KIND_LABELS = {
+  activity: 'Activity',
+  collectible: 'Collectible',
+  combat: 'Combat',
+  completion: 'Completion',
   exploration: 'Exploration',
-  social: 'With your partner',
+  kind: 'Kind',
+  mission: 'Mission',
   money: 'Money',
-  completion: '100% completion',
+  social: 'Social',
+  story: 'Story',
 };
 
+let cache = null;
+
 export async function loadAtlas() {
-  const response = await fetch('data/trophies.json');
-  return response.json();
-}
-
-export function gradeTotals(trophies) {
-  const totals = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
-  for (const trophy of trophies) totals[trophy.grade] += 1;
-  return totals;
-}
-
-export function earnedTotals(trophies, earned) {
-  const totals = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
-  for (const trophy of trophies) {
-    if (earned.has(trophy.id)) totals[trophy.grade] += 1;
+  if (cache) return cache;
+  const res = await fetch('data/trophies.json');
+  if (!res.ok) throw new Error(`trophies.json: HTTP ${res.status}`);
+  const doc = await res.json();
+  if (!Array.isArray(doc.trophies) || doc.trophies.length !== 55) {
+    throw new Error(`trophies.json: expected 55 trophies, got ${doc.trophies?.length}`);
   }
-  return totals;
+  cache = doc;
+  return doc;
 }
 
-export function missableList(trophies) {
-  return trophies.filter((trophy) => trophy.missable);
+export function byId(doc, id) {
+  return doc.trophies.find((t) => t.id === id) ?? null;
 }
 
-// The roadmap, built from the official descriptions: story first, then the
-// stranger strands, then activities and collectibles, then the cleanup that
-// finishes 100% completion. Each phase names the trophies it covers.
-export function phases(trophies) {
-  const byId = new Map(trophies.map((trophy) => [trophy.id, trophy]));
-  const take = (...ids) => ids.map((id) => byId.get(id)).filter(Boolean);
+export function gradeTotals(doc) {
+  const out = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
+  for (const t of doc.trophies) out[t.grade] = (out[t.grade] ?? 0) + 1;
+  return out;
+}
+
+export function missableList(doc) {
+  return doc.trophies.filter((t) => t.missable);
+}
+
+export function earnedTotals(doc, earned) {
+  let got = 0;
+  const byGrade = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
+  for (const t of doc.trophies) {
+    if (earned.has(t.id)) {
+      got += 1;
+      byGrade[t.grade] = (byGrade[t.grade] ?? 0) + 1;
+    }
+  }
+  return { got, total: doc.trophies.length, byGrade };
+}
+
+// The road to the platinum, in the order a player should work it: finish
+// the campaign first, pick up what you pass on the way, then grind the
+// counters and the money, and finally the two completion trophies.
+export function phases(doc) {
+  const kinds = (...wanted) => doc.trophies.filter((t) => wanted.includes(t.kind));
   return [
     {
-      title: 'Phase 1 — Play the story',
-      text: 'Start with the story and nothing else: opening mission to finale, chapters in order. The chapter pops come on their own, and the missable ones here are single named missions — do each when it shows up.',
-      trophies: take(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 44, 45, 46, 47, 48, 49, 50),
+      title: '1 · Play the story',
+      blurb: 'Finish the campaign. Story and mission trophies fall out of the plot as you go — the missables live here, so grab them when they come up.',
+      list: kinds('story', 'mission'),
     },
     {
-      title: 'Phase 2 — Strangers across Leonida',
-      text: 'Then the strangers. Each one has a strand of missions around the state; finish eight strands for Strangers & Freaks, and take each character finale — Andy, Kenton, Billy, Randy, Tyrone — when its last mission appears.',
-      trophies: take(22, 23, 24, 25, 26, 27, 29),
+      title: '2 · While you are out there',
+      blurb: 'Exploration, collectibles and the social beats. Most of these happen on the way to somewhere else — keep an eye out and they stack up.',
+      list: kinds('exploration', 'collectible', 'social'),
     },
     {
-      title: 'Phase 3 — Activities and skills',
-      text: 'Then the open-world grind: try every activity once, then chase the counted ones — 250 stunts, 20 races, 50 challenges, gold at the range, drone wins everywhere. No story gates here, so go at your own pace.',
-      trophies: take(15, 16, 17, 18, 19, 20, 21, 32, 36, 38, 39, 51),
+      title: '3 · Counters and cash',
+      blurb: 'The long grinds: activities, combat feats and money. Save these for after the story, when you can chase numbers without the plot pulling you on.',
+      list: kinds('activity', 'combat', 'money'),
     },
     {
-      title: 'Phase 4 — Collectibles and the map',
-      text: 'Collectibles next: meditation spots, card sets, WAiNK tags, vehicles, and every corner of the map. Sweep region by region and use the kind and missable filters to see what is still missing.',
-      trophies: take(28, 30, 31, 35, 42),
-    },
-    {
-      title: 'Phase 5 — Heists, money and cleanup',
-      text: 'Last: the heists and the money — vaults, armored trucks, gang operations, laundered bills, shop spending, garages. When everything else is ticked, 100% completion pops and the platinum follows.',
-      trophies: take(33, 34, 37, 40, 41, 43, 52, 53, 54, 55, 14),
+      title: '4 · The last two',
+      blurb: '100% completion, then the platinum. Nothing left to do but watch it pop.',
+      list: kinds('completion'),
     },
   ];
+}
+
+export function matchesQuery(trophy, query) {
+  if (!query) return true;
+  const hay = `${trophy.name} ${trophy.description} ${trophy.guide}`.toLowerCase();
+  return query.toLowerCase().split(/\s+/).every((word) => word && hay.includes(word));
 }

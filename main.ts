@@ -1,14 +1,14 @@
-// Leonida Trophy Atlas — dossier entrypoint for gta6-trophy-guide-01.
-// Node 22, stdlib only.
+// Leonida Trophy Atlas — the hand-in for gta6-trophy-guide-01.
+// Node 22+, standard library only.
 //
-// This builds what gets handed in: the offline guide in app/ (index.html,
-// modules, styles and data, including app/data/trophies.json), the
-// screenshots of it, and dossier.json under /output — the summary the judge
-// reads — produced by the vendored make.fun library. The library file
-// vendor/makefun-frontend.ts is the kit's own copy, kept byte for byte: the
-// scorer rebuilds the dossier with its identical copy and compares the two.
+// What this does: it takes the offline guide in app/ (index.html, its JS
+// modules, styles and data, trophies.json among them) plus the screenshots
+// in screenshots/ and puts them in /output, then writes /output/dossier.json
+// — the summary the judge reads — with the vendored make.fun library.
+// vendor/makefun-frontend.ts is the kit's own copy and stays byte for byte:
+// the scorer rebuilds the dossier with its identical copy and compares.
 //
-// Outside the grader, point MAKEFUN_OUTPUT_DIR at a local folder:
+// Run it locally with MAKEFUN_OUTPUT_DIR pointed at a folder:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
@@ -16,38 +16,26 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
 
-// Caps from the scorer for this competition (reference/gate.json). The text
-// cap shapes how big the dossier gets; the rest reject an entry the scorer
-// would refuse anyway: over 4 screenshots, any screenshot over 256 KiB, or
-// app/ past 993 files / 48 MiB.
-const TEXT_CAP_BYTES = 163840;
-const MAX_SHOTS = 4;
-const MAX_SHOT_BYTES = 262144;
-const MAX_APP_FILES = 993;
-const MAX_APP_BYTES = 50331648;
+const here = fileURLToPath(new URL('.', import.meta.url));
+const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-const rootDir = fileURLToPath(new URL('.', import.meta.url));
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+mkdirSync(out, { recursive: true });
+cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
+mkdirSync(join(out, 'screenshots'), { recursive: true });
+if (existsSync(join(here, 'screenshots'))) {
+  cpSync(join(here, 'screenshots'), join(out, 'screenshots'), { recursive: true });
+}
 
-mkdirSync(outDir, { recursive: true });
-
-// Copy the guide itself: every static file under app/.
-cpSync(join(rootDir, 'app'), join(outDir, 'app'), { recursive: true });
-
-// Copy the renders of the guide, when they exist.
-mkdirSync(join(outDir, 'screenshots'), { recursive: true });
-const shots = join(rootDir, 'screenshots');
-if (existsSync(shots)) cpSync(shots, join(outDir, 'screenshots'), { recursive: true });
-
-// Build the dossier the judge reads.
-const dossierFile = join(outDir, 'dossier.json');
+// The scorer's caps for this competition (reference/gate.json): the text cap
+// shapes how big the dossier gets; the rest refuse an entry the scorer
+// would refuse — more than 4 screenshots, one over 256 KiB, more than 993
+// files and directories in app/, or 48 MiB of app files.
 writeFileSync(
-  dossierFile,
-  buildDossier(outDir, {
-    text_max_bytes: TEXT_CAP_BYTES,
-    screenshots: { max: MAX_SHOTS, max_bytes: MAX_SHOT_BYTES },
-    app_max_files: MAX_APP_FILES,
-    app_max_bytes: MAX_APP_BYTES,
+  join(out, 'dossier.json'),
+  buildDossier(out, {
+    text_max_bytes: 163840,
+    screenshots: { max: 4, max_bytes: 262144 },
+    app_max_files: 993,
+    app_max_bytes: 50331648,
   }),
 );
-console.log(`dossier written: ${dossierFile}`);
